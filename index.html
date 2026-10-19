@@ -1,0 +1,407 @@
+<style>
+    :root {
+        --bg-dark-green: #052616;
+        --bg-emerald: #0a3d24;
+        --card-green: #0f4c2f;
+        --gold-primary: #f9ca24;
+        --gold-bright: #ffe066;
+        --text-white: #ffffff;
+        --text-cream: #d8ede2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        background-color: var(--bg-dark-green);
+        color: var(--text-white);
+        font-family: 'Poppins', sans-serif;
+        padding-bottom: 60px;
+    }
+    .top-ornament {
+        height: 6px;
+        background: linear-gradient(90deg, var(--bg-dark-green), var(--gold-primary), var(--gold-bright), var(--gold-primary), var(--bg-dark-green));
+    }
+    header {
+        text-align: center; padding: 45px 20px 30px;
+        background: radial-gradient(circle at center, #115635 0%, var(--bg-dark-green) 85%);
+        border-bottom: 2px solid rgba(249, 202, 36, 0.35);
+    }
+    .logo-badge {
+        width: 95px; height: 95px; margin: 0 auto 15px; border-radius: 50%;
+        border: 3px solid var(--gold-primary);
+        display: flex; align-items: center; justify-content: center;
+        background: #041b0f; color: var(--gold-primary); font-size: 2.5rem;
+        overflow: hidden;
+    }
+    header h1 {
+        font-family: 'Playfair Display', serif; color: var(--gold-primary);
+        font-size: 2.8rem; font-style: italic;
+    }
+    .subtitle {
+        display: inline-block; color: var(--text-cream); font-size: 0.9rem;
+        letter-spacing: 3px; margin-top: 6px; padding: 4px 16px;
+        border-top: 1px solid var(--gold-primary); border-bottom: 1px solid var(--gold-primary);
+    }
+    .search-wrapper { max-width: 500px; margin: 20px auto 0; position: relative; }
+    .search-wrapper input {
+        width: 100%; padding: 12px 20px 12px 45px; border-radius: 30px;
+        border: 1.5px solid var(--gold-primary); background-color: rgba(5, 38, 22, 0.85);
+        color: var(--text-white); font-family: 'Poppins', sans-serif; outline: none;
+    }
+    .search-wrapper i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--gold-primary); }
+    
+    nav {
+        position: sticky; top: 0; background-color: rgba(5, 38, 22, 0.96);
+        backdrop-filter: blur(12px); padding: 14px 0; border-bottom: 2px solid var(--gold-primary); z-index: 1000;
+    }
+    .nav-container {
+        display: flex; overflow-x: auto; padding: 0 15px; gap: 10px; max-width: 850px; margin: 0 auto;
+    }
+    .nav-container::-webkit-scrollbar { display: none; }
+    .nav-link {
+        color: var(--text-white); background: linear-gradient(145deg, #0f4c2f, #093520);
+        border: 1px solid rgba(249, 202, 36, 0.5); text-decoration: none;
+        white-space: nowrap; font-weight: 600; font-size: 0.88rem; padding: 8px 16px;
+        border-radius: 25px; display: flex; align-items: center; gap: 8px;
+    }
+    .nav-link i { color: var(--gold-primary); }
+    
+    main { padding: 20px 16px; max-width: 720px; margin: 0 auto; }
+    section { margin-bottom: 45px; padding-top: 75px; margin-top: -75px; }
+    .section-header { text-align: center; margin-bottom: 22px; }
+    .section-header h2 {
+        font-family: 'Playfair Display', serif; color: var(--gold-primary); font-size: 1.85rem;
+    }
+    .sub-banner {
+        background: linear-gradient(90deg, rgba(249, 202, 36, 0.18), rgba(249, 202, 36, 0.05));
+        border-left: 4px solid var(--gold-primary); color: var(--gold-bright);
+        padding: 8px 14px; border-radius: 8px; margin: 15px 0 12px; font-weight: 600;
+    }
+    .menu-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    .menu-item {
+        background: linear-gradient(135deg, var(--card-green) 0%, #093520 100%);
+        border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 15px;
+        border: 1px solid rgba(249, 202, 36, 0.25); cursor: pointer;
+    }
+    .item-photo {
+        width: 82px; height: 82px; border-radius: 12px; object-fit: cover;
+        border: 2px solid var(--gold-primary); flex-shrink: 0;
+    }
+    .item-content { flex: 1; display: flex; justify-content: space-between; align-items: center; }
+    .item-details h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
+    .item-flavors { font-size: 0.8rem; color: var(--gold-bright); font-style: italic; margin-bottom: 3px; }
+    .item-price {
+        font-weight: 700; color: var(--bg-dark-green); background: linear-gradient(135deg, var(--gold-bright), var(--gold-primary));
+        font-size: 0.98rem; padding: 7px 13px; border-radius: 10px; white-space: nowrap;
+    }
+    
+    /* Info Banner Styles */
+    .info-banner {
+        background-color: rgba(249, 202, 36, 0.1);
+        border-left: 4px solid var(--gold-primary);
+        color: var(--text-cream);
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    .info-banner i {
+        color: var(--gold-primary);
+        font-size: 1.2rem;
+    }
+    .info-banner strong {
+        color: var(--gold-primary);
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 2000;
+        justify-content: center; align-items: center; padding: 20px;
+    }
+    .modal-content {
+        background: var(--bg-dark-green); border: 2px solid var(--gold-primary);
+        border-radius: 20px; width: 100%; max-width: 400px; padding: 20px; text-align: center;
+        position: relative;
+    }
+    .modal-image {
+        width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+        border: 4px solid var(--gold-primary); margin: -75px auto 15px; background: #000;
+    }
+    .modal-title { font-family: 'Playfair Display', serif; color: var(--gold-primary); font-size: 1.8rem; margin-bottom: 10px; }
+    .modal-ingredients { color: var(--text-cream); font-size: 0.95rem; margin-bottom: 20px; }
+    .close-modal {
+        position: absolute; top: 15px; right: 15px; background: none; border: none;
+        color: var(--gold-primary); font-size: 1.5rem; cursor: pointer;
+    }
+</style>
+
+
+<header>
+    <div class="logo-badge">
+        <img src="https://instagram.falg1-2.fna.fbcdn.net/v/t51.82787-19/839884627_18104151146176832_9192609227354880199_n.jpg?_nc_cat=108&_nc_map=urlgen_bucketless&ig_cache_key=GFOfDzJAIQcqoVFAAMc4d0NjtZJ-bmNDAQAB0j-ccb7-5&ccb=7-5&_nc_sid=669407&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=FdNSexQUnLYQ7kNvwFfkhPs&_nc_oc=AdpXyV_lnEMiRKchZlqka9CAh7ikXOuZ6n2ydj4Fnk2oe3UN3tySvIT7BnCswmU5Vok&_nc_zt=24&_nc_ht=instagram.falg1-2.fna&_nc_gid=NVZbFgE-iRexoFrHalPIuw&_nc_ss=7baaf&oh=00_AQMkhzUdkQ3oUOkCE5QuSXG3ZxYXmYgB4imp8cWb5q5_1A&oe=6AD97426" alt="Logo Évasion IT" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+    </div>
+    <h1>Évasion IT</h1>
+    <div class="subtitle">Coffee Shop • Desserts • Crêperie</div>
+    <div class="search-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Rechercher..." onkeyup="filterMenu()">
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <a href="#boisson-chaude" class="nav-link"><i class="fa-solid fa-mug-saucer"></i> Boissons Chaudes & Spécialités</a>
+        <a href="#mojito" class="nav-link"><i class="fa-solid fa-martini-glass-citrus"></i> Mojito</a>
+        <a href="#signature" class="nav-link"><i class="fa-solid fa-star"></i> Signature</a>
+        <a href="#jus" class="nav-link"><i class="fa-solid fa-carrot"></i> Jus Healthy</a>
+        <a href="#milkshake" class="nav-link"><i class="fa-solid fa-blender"></i> Milkshake</a>
+        <a href="#dessert" class="nav-link"><i class="fa-solid fa-cake-candles"></i> Dessert</a>
+        <a href="#crepes" class="nav-link"><i class="fa-solid fa-stroopwafel"></i> Crêpes</a>
+        <a href="#gaufres" class="nav-link"><i class="fa-solid fa-cookie"></i> Gaufres</a>
+        <a href="#viennoiserie" class="nav-link"><i class="fa-solid fa-croissant"></i> Viennoiserie</a>
+        <a href="#boissons-fraiches" class="nav-link"><i class="fa-solid fa-bottle-water"></i> Boissons Fraîches</a>
+    </div>
+</nav>
+
+<main>
+
+    <!-- Info Banner -->
+    <div class="info-banner">
+        <i class="fa-solid fa-hand-pointer"></i>
+        <span><strong>Astuce :</strong> Cliquez sur certaines boissons et spécialités pour découvrir leurs ingrédients !</span>
+    </div>
+
+    <!-- BOISSON CHAUDE & SPÉCIALITÉS -->
+    <section id="boisson-chaude">
+        <div class="section-header"><h2><i class="fa-solid fa-mug-saucer"></i> Boisson Chaude & Spécialités</h2></div>
+        <div class="menu-grid">
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Café Grain</h3></div><div class="item-price">100 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Café caps</h3></div><div class="item-price">200 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Café l'or</h3></div><div class="item-price">250 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Lait chaud</h3></div><div class="item-price">100 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Cappuccino</h3></div><div class="item-price">250 DA</div></div></div>
+            <div class="menu-item" data-ingredients="Café et mousse de lait">
+                <img src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Macchiato</h3></div><div class="item-price">250 DA</div></div>
+            </div>
+            <div class="menu-item" data-ingredients="">
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=200&q=80" class="item-photo">
+                <div class="item-content">
+                    <div class="item-details">
+                        <h3>Mochaccino</h3>
+                        <div class="item-flavors">Vanille / Chocolat / Noisette / Caramel</div>
+                    </div>
+                    <div class="item-price">350 DA</div>
+                </div>
+            </div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1557006021-b85faa2bc5e2?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Flat White</h3></div><div class="item-price">250 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Americano</h3></div><div class="item-price">200 DA</div></div></div>
+            <div class="menu-item" data-ingredients="Boule de glace vanille et café espresso">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnJFeun0ar8ght3LW9puTwlKTkY3omWrZXwnw-px1dzyt0jQEeiivsdO6&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Affogato</h3></div><div class="item-price">400 DA</div></div>
+            </div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Latte</h3></div><div class="item-price">200 DA</div></div></div>
+            <div class="menu-item" data-ingredients="Café avec crème chantilly">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Café viennois</h3></div><div class="item-price">300 DA</div></div>
+            </div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Chocolat chaud</h3></div><div class="item-price">400 DA</div></div></div>
+            <div class="menu-item" data-ingredients="Chocolat chaud avec crème chantilly">
+                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Chocolat chaud viennois</h3></div><div class="item-price">500 DA</div></div>
+            </div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1499961024600-ad094db305cc?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Ice latte</h3></div><div class="item-price">250 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Ice coffee</h3></div><div class="item-price">250 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://www.lurch.de/media/91/0e/25/1684237758/minztee_tee_infusion.png?ts=1749546126" class="item-photo"><div class="item-content"><div class="item-details"><h3>Thé / Infusion</h3></div><div class="item-price">150 DA</div></div></div>
+        </div>
+    </section>
+
+    <!-- MOJITO -->
+    <section id="mojito">
+        <div class="section-header"><h2><i class="fa-solid fa-leaf"></i> Mojito</h2></div>
+        <div class="menu-grid">
+            <div class="menu-item" data-ingredients="Citron, menthe fraîche, boisson gazeuse">
+                <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Mojito classique</h3></div><div class="item-price">400 DA</div></div>
+            </div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Mojito red</h3></div><div class="item-price">500 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Mojito bleu</h3></div><div class="item-price">500 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Mojito fruits de la passion</h3></div><div class="item-price">600 DA</div></div></div>
+        </div>
+    </section>
+
+    <!-- SIGNATURE -->
+    <section id="signature">
+        <div class="section-header"><h2><i class="fa-solid fa-star"></i> Signature</h2></div>
+        <div class="menu-grid">
+            <div class="menu-item" data-ingredients="Citron, ananas, fruits de la passion, lait de coco">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgy976A21gt6pUyFCI9p3AzZ_5oleZOH265Ov0It5G2T9L0pCSjW4P-hiZ&s=10" alt="Pina colada" class="item-photo">
+                <div class="item-content"><div class="item-details"><h3>Pina colada</h3></div><div class="item-price">500 DA</div></div>
+            </div>
+            <div class="menu-item" data-ingredients="Citron, ananas, fruits rouges">
+                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200&q=80" alt="Bora Bora" class="item-photo">
+                <div class="item-content"><div class="item-details"><h3>Bora Bora</h3></div><div class="item-price">500 DA</div></div>
+            </div>
+            <div class="menu-item" data-ingredients="Citron, ananas, bleu curaçao">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=200&q=80" alt="Blue lagoon" class="item-photo">
+                <div class="item-content"><div class="item-details"><h3>Blue lagoon</h3></div><div class="item-price">450 DA</div></div>
+            </div>
+            <div class="menu-item" data-ingredients="Citron, ananas, fruits rouges, mondoeuf">
+                <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=200&q=80" alt="Pink Lady" class="item-photo">
+                <div class="item-content"><div class="item-details"><h3>Pink Lady</h3></div><div class="item-price">550 DA</div></div>
+            </div>
+            <div class="menu-item" data-ingredients="Mélange de fruits de saison fraîchement pressés">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&q=80" alt="Cocktails de fruits" class="item-photo">
+                <div class="item-content"><div class="item-details"><h3>Cocktails de fruits</h3></div><div class="item-price">450 DA</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JUS HEALTHY -->
+    <section id="jus">
+        <div class="section-header"><h2><i class="fa-solid fa-carrot"></i> Jus Healthy</h2></div>
+        <div class="menu-grid">
+            <div class="menu-item" data-ingredients="Orange, Carotte, Gingembre, Citron, Cannelle"><img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Jus Énergisant</h3></div><div class="item-price">600 DA</div></div></div>
+            <div class="menu-item" data-ingredients="Pomme verte, Concombre, Céleri, Gingembre, Citron vert, Menthe"><img src="https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Jus Détox</h3></div><div class="item-price">500 DA</div></div></div>
+        </div>
+    </section>
+
+    <!-- MILKSHAKE -->
+    <section id="milkshake">
+        <div class="section-header"><h2><i class="fa-solid fa-blender"></i> Milkshake</h2></div>
+        <div class="menu-grid">
+            <div class="menu-item" data-ingredients=""><img src="https://houseofnasheats.com/wp-content/uploads/2023/10/Chocolate-Milkshake-Recipe-11.jpg" class="item-photo"><div class="item-content"><div class="item-details"><h3>Milkshake Nutella</h3></div><div class="item-price">600 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://yoursmoothieguide.com/wp-content/uploads/2022/01/Banana-Milkshake-5-1.jpg" class="item-photo"><div class="item-content"><div class="item-details"><h3>Milkshake Nutella banane</h3></div><div class="item-price">700 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr3UgP0HsZkRsW7K-Ntr8x0jYjJ67CXQizkBFb7AkNVxagjhTw2AuiI6o&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Milkshake vanille</h3></div><div class="item-price">500 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwn_sR29yQMoRpYO1mcs-HbHIBWNvIq6sH2_damzJrrBTMm_0wnTDTDGox&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Milkshake pistache</h3></div><div class="item-price">800 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwZ6PRwZZW92A_scHf3bmukTD10N-DdCt6MaJ7IqrfjFg5fjVyPZHZ7vs&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Milkshake raffaello</h3></div><div class="item-price">800 DA</div></div></div>
+        </div>
+    </section>
+
+    <!-- DESSERT -->
+    <section id="dessert">
+        <div class="section-header"><h2><i class="fa-solid fa-crown"></i> Dessert</h2></div>
+        <div class="menu-grid">
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Gâteau du jour</h3></div><div class="item-price">Sur Place</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Tiramisu</h3></div><div class="item-price">400 DA</div></div></div>
+            <div class="menu-item" data-ingredients="">
+                <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=200&q=80" class="item-photo">
+                <div class="item-content">
+                    <div class="item-details">
+                        <h3>Cheesecakes</h3>
+                        <div class="item-flavors">Lotus / Nutella / Fruits rouges</div>
+                    </div>
+                    <div class="item-price">500 DA</div>
+                </div>
+            </div>
+            <div class="menu-item" data-ingredients=""><img src="https://food-with-style.com/cdn/shop/articles/san-sebastian-cheesecake-food-with-style.jpg?v=1788877197&width=1200" class="item-photo"><div class="item-content"><div class="item-details"><h3>San Sebastian</h3></div><div class="item-price">600 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPumFOlsvSsX3ewxEw3TZmXtZdT8aI5kt1p1DKMDdgTvr4_tSITshMJqDN&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Nougat glacé</h3></div><div class="item-price">600 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=200&q=80" class="item-photo"><div class="item-content"><div class="item-details"><h3>Fondant au chocolat</h3></div><div class="item-price">400 / 600 DA</div></div></div>
+        </div>
+    </section>
+
+    <!-- CRÊPES -->
+    <section id="crepes">
+        <div class="section-header"><h2><i class="fa-solid fa-stroopwafel"></i> Crêpes</h2></div>
+        <div class="sub-banner">Au choix : Pâte Moelleuse ou Croustillante</div>
+        <div class="menu-grid">
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGqQXj1twJ_bhmNi1AiQbE6lhHliNmmA5_3Nc5tGFantxPo7YySlh4G-Tw&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Crêpe Nutella</h3></div><div class="item-price">450 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsjTHlKA3XChNORyu5vn2xVVjwbEaviHIRPZrCEAZr8KJD5yorTtaEriVH&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Crêpe Nutella banane</h3></div><div class="item-price">500 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnCrhpWlhbj1UUQIhrUuQ5eqfEOohXKaCsYOVqNexpPjNp14DE1kYALQg&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Crêpe Fruits</h3></div><div class="item-price">550 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK0hVROIouR9-MBcIgt0RXJ8VN1SlJpIIxWOe-RNKOSNs9JjgkcsyqVfeY&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Crêpe Fruits secs</h3></div><div class="item-price">600 DA</div></div></div>
+        </div>
+    </section>
+
+    <!-- GAUFRES -->
+    <section id="gaufres">
+        <div class="section-header"><h2><i class="fa-solid fa-cookie"></i> Gaufres</h2></div>
+        <div class="sub-banner">Nos gaufres moelleuses classiques</div>
+        <div class="menu-grid">
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9TCJ6cCtbunU1FPYEJ3uz-UMbq-rLLdyoEb9kJ5f9HZZ36LgTwXa0k81H&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Gaufre Nutella</h3></div><div class="item-price">450 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://img.cuisineaz.com/660x495/2015/06/29/i69738-gaufres-express-chocolat-banane.jpg" class="item-photo"><div class="item-content"><div class="item-details"><h3>Gaufre Nutella banane</h3></div><div class="item-price">500 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://cdn.pratico-pratiques.com/app/uploads/sites/3/2018/08/20175712/gaufres-aux-fruits.jpeg" class="item-photo"><div class="item-content"><div class="item-details"><h3>Gaufre Fruits</h3></div><div class="item-price">550 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSarSdZjju1rDo_XhGDa_V-V3tJVYe1Yq2GmjNDXTqYE9nQshdgE5Kecyjl&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Gaufre Fruits secs</h3></div><div class="item-price">600 DA</div></div></div>
+        </div>
+    </section>
+
+    <!-- VIENNOISERIE -->
+    <section id="viennoiserie">
+        <div class="section-header"><h2><i class="fa-solid fa-croissant"></i> Viennoiserie</h2></div>
+        <div class="menu-grid">
+            <div class="menu-item" data-ingredients=""><img src="https://jeffreycagnes.fr/cdn/shop/files/croissant-beurre-viennoiserie-paris-jeffrey-cagnes.webp?v=1784122551&width=2500" class="item-photo"><div class="item-content"><div class="item-details"><h3>Viennoiserie au beurre</h3></div><div class="item-price">100 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpl2H6_mPQ8mepCDiOhedCaZSf0n8ACJLqG90Kdsol4nhHirqgrsEkKhY&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Viennoiserie Nutella</h3></div><div class="item-price">150 DA</div></div></div>
+        </div>
+    </section>
+
+    <!-- BOISSONS FRAÎCHES -->
+    <section id="boissons-fraiches">
+        <div class="section-header"><h2><i class="fa-solid fa-bottle-water"></i> Boissons Fraîches</h2></div>
+        <div class="menu-grid">
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy1rJQppYCLlbD6vzGQNnWJTt62GRz8yxPRn2NMSybABcomMXPKcws73MO&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Eau (0.5L)</h3></div><div class="item-price">50 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSgDwoG6qGCymNuYXmdx3-81ouIDlIc_GJWWmJ1fY9ANdk61Uqkm8gtKE&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Canette gazeuse</h3></div><div class="item-price">150 DA</div></div></div>
+            <div class="menu-item" data-ingredients=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS8suZkSPpU2NWeMHkeDo2fKNmry-eNj0XxokUHaaPCP0tzaLMP2GwzIkY&s=10" class="item-photo"><div class="item-content"><div class="item-details"><h3>Jus bouteille</h3></div><div class="item-price">100 DA</div></div></div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Modal Pop-up Structure -->
+<div id="itemModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+        <img id="modalImage" src="" alt="Plat" class="modal-image">
+        <h2 id="modalTitle" class="modal-title">Titre</h2>
+        <p id="modalIngredients" class="modal-ingredients">Ingrédients</p>
+    </div>
+</div>
+
+<!-- JavaScript Logic -->
+<script>
+    function filterMenu() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const items = document.querySelectorAll('.menu-item');
+
+        items.forEach(item => {
+            const title = item.querySelector('h3').innerText.toLowerCase();
+            const flavors = item.querySelector('.item-flavors') ? item.querySelector('.item-flavors').innerText.toLowerCase() : '';
+            if (title.includes(input) || flavors.includes(input)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    const modal = document.getElementById('itemModal');
+    const closeModal = document.querySelector('.close-modal');
+
+    document.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const ingredients = item.getAttribute('data-ingredients');
+            
+            if (!ingredients || ingredients.trim() === "") {
+                return; 
+            }
+
+            const title = item.querySelector('h3').innerText;
+            const imgSrc = item.querySelector('img').src;
+
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalIngredients').innerText = ingredients;
+            document.getElementById('modalImage').src = imgSrc;
+
+            modal.style.display = 'flex';
+        });
+    });
+
+    if (closeModal) {
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+</script>
